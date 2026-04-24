@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NIET Placement Portal – Greater Noida</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy2: #112240;
+            --blue: #1e56a0;
+            --sky: #3a86ff;
+            --gold: #f4a917;
+            --white: #ffffff;
+            --offwhite: #f5f7fa;
+            --text: #1a2340;
+            --muted: #5a6a8a;
+            --border: #dce3f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warn: #f59e0b;
+            --radius: 12px;
+            --shadow: 0 4px 24px rgba(10, 22, 40, 0.10);
+            --shadow-lg: 0 8px 48px rgba(10, 22, 40, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--offwhite);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* ─── UTILITIES ─── */
+        .hidden {
+            display: none !important;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 24px;
+            border-radius: 8px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all .2s;
+        }
+
+        .btn-primary {
+            background: var(--sky);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1a6fe0;
+            transform: translateY(-1px);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-gold:hover {
+            background: #e09610;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--sky);
+            color: var(--sky);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 7px 16px;
+            font-size: 13px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-gold {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-red {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ─── LANDING ─── */
+        #landing {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #1a3a6e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .land-header {
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .land-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .land-logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: #fff;
+            padding: 4px;
+            object-fit: contain;
+        }
+
+        .land-logo-text h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .land-logo-text p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .5);
+            margin-top: 1px;
+        }
+
+        .land-hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 24px 40px;
+        }
+
+        .land-badge {
+            display: inline-block;
+            background: rgba(58, 134, 255, .18);
+            color: var(--sky);
+            border: 1px solid rgba(58, 134, 255, .3);
+            border-radius: 20px;
+            padding: 5px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: .5px;
+        }
+
+        .land-hero h1 {
+            font-size: clamp(36px, 6vw, 72px);
+            color: #fff;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .land-hero h1 span {
+            color: var(--gold);
+        }
+
+        .land-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, .65);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .portals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .portal-card {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 16px;
+            padding: 32px 28px;
+            cursor: pointer;
+            transition: all .25s;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .portal-card.student::before {
+            background: linear-gradient(90deg, #3a86ff, #60a5fa);
+        }
+
+        .portal-card.company::before {
+            background: linear-gradient(90deg, #f4a917, #fcd34d);
+        }
+
+        .portal-card.college::before {
+            background: linear-gradient(90deg, #10b981, #6ee7b7);
+        }
+
+        .portal-card:hover {
+            background: rgba(255, 255, 255, .11);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .3);
+        }
+
+        .portal-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .portal-card.student .portal-icon {
+            background: rgba(58, 134, 255, .2);
+        }
+
+        .portal-card.company .portal-icon {
+            background: rgba(244, 169, 23, .2);
+        }
+
+        .portal-card.college .portal-icon {
+            background: rgba(16, 185, 129, .2);
+        }
+
+        .portal-card h3 {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .portal-card p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .portal-arrow {
+            color: rgba(255, 255, 255, .4);
+            font-size: 20px;
+            transition: transform .2s;
+        }
+
+        .portal-card:hover .portal-arrow {
+            transform: translateX(4px);
+            color: #fff;
+        }
+
+        .land-footer {
+            padding: 20px 40px;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            text-align: center;
+        }
+
+        .land-footer p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        /* ─── AUTH PAGES ─── */
+        .auth-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: var(--offwhite);
+        }
+
+        .auth-box {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 560px;
+            overflow: hidden;
+        }
+
+        .auth-head {
+            padding: 28px 36px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .auth-head .back {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .auth-head .back:hover {
+            color: var(--sky);
+        }
+
+        .auth-head h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .auth-head p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            padding: 0 36px;
+        }
+
+        .auth-tab {
+            padding: 14px 20px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--muted);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all .2s;
+        }
+
+        .auth-tab.active {
+            color: var(--sky);
+            border-bottom-color: var(--sky);
+        }
+
+        .auth-body {
+            padding: 28px 36px;
+        }
+
+        /* ─── FORMS ─── */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .form-grid.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.span2 {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: #fff;
+            transition: border .2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sky);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, .1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group .hint {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            margin: 20px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .or-divider {
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        /* ─── DASHBOARD LAYOUT ─── */
+        .dash {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--navy);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 100;
+            transition: transform .3s;
+        }
+
+        .sidebar-logo {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .sidebar-logo h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .sidebar-logo p {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .4);
+            margin-top: 2px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px 12px;
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, .6);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .2s;
+            margin-bottom: 2px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+        }
+
+        .nav-item.active {
+            background: rgba(58, 134, 255, .25);
+            color: var(--sky);
+        }
+
+        .nav-item span.icon {
+            font-size: 18px;
+            width: 22px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding: 16px 12px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .sidebar-user-info h4 {
+            font-size: 13px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .sidebar-user-info p {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .dash-main {
+            margin-left: 260px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dash-topbar {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .dash-topbar h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .dash-content {
+            padding: 32px;
+            flex: 1;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--navy);
+        }
+
+        /* ─── DASHBOARD WIDGETS ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 20px 22px;
+        }
+
+        .stat-card .val {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .stat-card .lbl {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .stat-card .change {
+            font-size: 12px;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .stat-card .icon {
+            font-size: 28px;
+            float: right;
+            margin-top: -4px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        table th {
+            padding: 11px 14px;
+            text-align: left;
+            font-family: 'Syne', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            border-bottom: 2px solid var(--border);
+            background: #fafbfd;
+        }
+
+        table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table tr:hover td {
+            background: #f8faff;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-head h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 4px;
+            background: var(--offwhite);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .tab-bar button {
+            padding: 8px 18px;
+            border: none;
+            background: none;
+            border-radius: 7px;
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .tab-bar button.active {
+            background: #fff;
+            color: var(--navy);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width .5s;
+        }
+
+        .company-logo-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .alert {
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .profile-section {
+            background: #fff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .profile-section h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .profile-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 24px;
+        }
+
+        .profile-item {}
+
+        .profile-item .key {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .profile-item .val {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 22, 40, .6);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 640px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-head {
+            padding: 24px 28px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-head h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            padding: 24px 28px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 14px 10px 36px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar .s-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state .emoji {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+        }
+
+        /* ─── PLACEMENT % RING ─── */
+        .ring-wrap {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 20px;
+        }
+
+        .ring-wrap svg {
+            flex-shrink: 0;
+        }
+
+        .ring-info .pct {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .ring-info p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:768px) {
+            .land-header {
+                padding: 16px 20px;
+            }
+
+            .land-hero h1 {
+                font-size: 32px;
+            }
+
+            .portals {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-body {
+                padding: 20px 20px;
+            }
+
+            .auth-head {
+                padding: 20px 20px 16px;
+            }
+
+            .auth-tabs {
+                padding: 0 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.span2 {
+                grid-column: span 1;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .dash-main {
+                margin-left: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .dash-content {
+                padding: 20px 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .profile-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════════════════ -->
+    <div id="landing" class="page active">
+        <header class="land-header">
+            <div class="land-logo ">
+
+                <div class="land-logo-text">
+                    <h2>PLACETRACK</h2>
+                    <p>Track Your Placement Journey</p>
+                </div>
+            </div>
+            <div style="font-size:13px;color:rgba(255,255,255,.4);"></div>
+        </header>
+
+        <div class="land-hero">
+            <div class="land-badge">🎓 Campus Placement Portal</div>
+            <h1>Connecting <span>Talent</span><br />with Opportunity</h1>
+            <p>NIET's official placement management system. Students, companies, and the college — all on one platform.
+            </p>
+
+            <div class="portals">
+                <div class="portal-card student" onclick="showAuth('student')">
+                    <div class="portal-icon">🎓</div>
+                    <h3>Student Portal</h3>
+                    <p>Register your profile, upload resume & documents, apply to companies visiting campus.</p>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <span style="font-size:13px;color:rgba(255,255,255,.5);">Login / Sign Up</span>
+                        <span class="portal-arrow">→</span>
+                    </div>
+                </div>
+                <div class="portal-card company" onclick="showAuth('company')">
+                    <div class="portal-icon">🏢</div>
+                    <h3>Company Portal</h3>
+                    <p>Post placement drives, set eligibility criteria, shortlist candidates, announce packages.</p>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <span style="font-size:13px;color:rgba(255,255,255,.5);">Login / Register</span>
+                        <span class="portal-arrow">→</span>
+                    </div>
+                </div>
+                <div class="portal-card college" onclick="showAuth('college')">
+                    <div class="portal-icon">🏫</div>
+                    <h3>College Portal</h3>
+                    <p>Manage placement drives, forward invite emails, view statistics and placement reports.</p>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <span style="font-size:13px;color:rgba(255,255,255,.5);">Admin Login</span>
+                        <span class="portal-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="land-footer">
+            <p>NIET – Noida Institute of Engineering & Technology, 19 Knowledge Park-II, Greater Noida, UP 201306
+                &nbsp;|&nbsp; placement@niet.co.in</p>
+        </footer>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     STUDENT AUTH
+══════════════════════════════════════════════════ -->
+    <div id="page-student-auth" class="page">
+        <div class="auth-wrap">
+            <div class="auth-box">
+                <div class="auth-head">
+                    <div class="back" onclick="goHome()">← Back to Home</div>
+                    <h2>🎓 Student Portal</h2>
+                    <p>NIET Placement – Greater Noida</p>
+                </div>
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchTab('student','login',this)">Login</div>
+                    <div class="auth-tab" onclick="switchTab('student','signup',this)">Sign Up</div>
+                </div>
+
+                <!-- LOGIN -->
+                <div id="student-login" class="auth-body">
+                    <div class="form-grid full">
+                        <div class="form-group">
+                            <label>ERP ID / Roll Number</label>
+                            <input type="text" placeholder="e.g. 2021BTCS001" id="s-login-erp" />
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter password" id="s-login-pass" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-outline" onclick="goHome()">Cancel</button>
+                        <button class="btn btn-primary" onclick="studentLogin()">Login →</button>
+                    </div>
+                    <div class="or-divider">or</div>
+                    <p style="text-align:center;font-size:13px;color:var(--muted);">New student? <span
+                            style="color:var(--sky);cursor:pointer;font-weight:600;"
+                            onclick="switchTabDirect('student','signup')">Create an account</span></p>
+                </div>
+
+                <!-- SIGNUP -->
+                <div id="student-signup" class="auth-body hidden">
+                    <div class="section-title">Basic Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" placeholder="Rahul" id="s-fname" />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" placeholder="Sharma" id="s-lname" />
+                        </div>
+                        <div class="form-group">
+                            <label>ERP ID *</label>
+                            <input type="text" placeholder="2021BTCS001" id="s-erp" />
+                        </div>
+                        <div class="form-group">
+                            <label>Roll Number *</label>
+                            <input type="text" placeholder="210101" id="s-roll" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email (College) *</label>
+                            <input type="email" placeholder="rahul.sharma@niet.co.in" id="s-email" />
+                        </div>
+                        <div class="form-group">
+                            <label>Personal Email</label>
+                            <input type="email" placeholder="rahul@gmail.com" id="s-email2" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" placeholder="9XXXXXXXXX" id="s-phone" />
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth *</label>
+                            <input type="date" id="s-dob" />
+                        </div>
+                        <div class="form-group">
+                            <label>Gender *</label>
+                            <select id="s-gender">
+                                <option value="">Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="s-cat">
+                                <option value="">Select</option>
+                                <option>General</option>
+                                <option>OBC</option>
+                                <option>SC</option>
+                                <option>ST</option>
+                                <option>EWS</option>
+                            </select>
+                        </div>
+                        <div class="form-group span2">
+                            <label>Permanent Address *</label>
+                            <input type="text" placeholder="House No, Street, City, State, PIN" id="s-addr" />
+                        </div>
+                    </div>
+
+                    <div class="section-title">Academic Details</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Branch / Department *</label>
+                            <select id="s-branch">
+                                <option value="">Select Branch</option>
+                                <option>Computer Science & Engineering</option>
+                                <option>Electronics & Communication</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Civil Engineering</option>
+                                <option>Electrical Engineering</option>
+                                <option>Information Technology</option>
+                                <option>MBA</option>
+                                <option>MCA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Batch / Passing Year *</label>
+                            <select id="s-batch">
+                                <option>2025</option>
+                                <option>2026</option>
+                                <option>2027</option>
+                                <option>2028</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Current CGPA *</label>
+                            <input type="number" step="0.01" min="0" max="10" placeholder="e.g. 7.85" id="s-cgpa" />
+                        </div>
+                        <div class="form-group">
+                            <label>Total Backlogs</label>
+                            <input type="number" min="0" placeholder="0" id="s-backlogs" />
+                        </div>
+                        <div class="form-group">
+                            <label>10th % (SSC)</label>
+                            <input type="number" step="0.01" min="0" max="100" placeholder="e.g. 82.4" id="s-10th" />
+                        </div>
+                        <div class="form-group">
+                            <label>12th % (HSC)</label>
+                            <input type="number" step="0.01" min="0" max="100" placeholder="e.g. 78.0" id="s-12th" />
+                        </div>
+                    </div>
+
+                    <div class="section-title">Government ID & Documents</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Government ID Type *</label>
+                            <select id="s-govtype">
+                                <option value="">Select</option>
+                                <option>Aadhaar Card</option>
+                                <option>PAN Card</option>
+                                <option>Voter ID</option>
+                                <option>Passport</option>
+                                <option>Driving Licence</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Government ID Number *</label>
+                            <input type="text" placeholder="XXXX XXXX XXXX" id="s-govid" />
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Resume (PDF) *</label>
+                            <input type="file" accept=".pdf,.doc,.docx" id="s-resume" />
+                            <span class="hint">PDF or DOC, max 5MB</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Gov ID (Image/PDF)</label>
+                            <input type="file" accept=".pdf,.jpg,.jpeg,.png" id="s-govfile" />
+                        </div>
+                        <div class="form-group">
+                            <label>Passport Photo</label>
+                            <input type="file" accept=".jpg,.jpeg,.png" id="s-photo" />
+                        </div>
+                    </div>
+
+                    <div class="section-title">Professional Details</div>
+                    <div class="form-grid">
+                        <div class="form-group span2">
+                            <label>Skills (comma separated)</label>
+                            <input type="text" placeholder="Python, Java, SQL, React, Machine Learning..."
+                                id="s-skills" />
+                        </div>
+                        <div class="form-group span2">
+                            <label>Internship / Work Experience</label>
+                            <textarea placeholder="Company name, role, duration, key responsibilities..."
+                                id="s-exp"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>LinkedIn Profile URL</label>
+                            <input type="url" placeholder="https://linkedin.com/in/..." id="s-linkedin" />
+                        </div>
+                        <div class="form-group">
+                            <label>GitHub / Portfolio URL</label>
+                            <input type="url" placeholder="https://github.com/..." id="s-github" />
+                        </div>
+                    </div>
+
+                    <div class="section-title">Account Security</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Create Password *</label>
+                            <input type="password" placeholder="Min 8 characters" id="s-pass" />
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password *</label>
+                            <input type="password" placeholder="Re-enter password" id="s-pass2" />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-outline" onclick="goHome()">Cancel</button>
+                        <button class="btn btn-primary" onclick="studentSignup()">Create Account →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     COMPANY AUTH
+══════════════════════════════════════════════════ -->
+    <div id="page-company-auth" class="page">
+        <div class="auth-wrap">
+            <div class="auth-box">
+                <div class="auth-head">
+                    <div class="back" onclick="goHome()">← Back to Home</div>
+                    <h2>🏢 Company Portal</h2>
+                    <p>Manage campus drives at NIET</p>
+                </div>
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchTab('company','login',this)">Login</div>
+                    <div class="auth-tab" onclick="switchTab('company','register',this)">Register Company</div>
+                </div>
+                <div id="company-login" class="auth-body">
+                    <div class="form-grid full">
+                        <div class="form-group">
+                            <label>Company Email / HR Email</label>
+                            <input type="email" placeholder="hr@company.com" id="c-login-email" />
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter password" id="c-login-pass" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-outline" onclick="goHome()">Cancel</button>
+                        <button class="btn btn-gold" onclick="companyLogin()">Login →</button>
+                    </div>
+                    <div class="or-divider">or</div>
+                    <p style="text-align:center;font-size:13px;color:var(--muted);">First time? <span
+                            style="color:var(--sky);cursor:pointer;font-weight:600;"
+                            onclick="switchTabDirect('company','register')">Register your company</span></p>
+                </div>
+                <div id="company-register" class="auth-body hidden">
+                    <div class="section-title">Company Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Company Name *</label>
+                            <input type="text" placeholder="e.g. Infosys Ltd." id="c-name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Industry / Sector *</label>
+                            <select id="c-sector">
+                                <option value="">Select</option>
+                                <option>IT / Software</option>
+                                <option>BFSI</option>
+                                <option>Manufacturing</option>
+                                <option>Consulting</option>
+                                <option>E-Commerce</option>
+                                <option>Core Engineering</option>
+                                <option>Analytics / Data Science</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Website</label>
+                            <input type="url" placeholder="https://company.com" id="c-web" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Type</label>
+                            <select id="c-type">
+                                <option>MNC</option>
+                                <option>Indian MNC</option>
+                                <option>Startup</option>
+                                <option>PSU</option>
+                                <option>SME</option>
+                            </select>
+                        </div>
+                        <div class="form-group span2">
+                            <label>Company Address *</label>
+                            <input type="text" placeholder="Registered office address" id="c-addr" />
+                        </div>
+                        <div class="form-group">
+                            <label>CIN / Registration No.</label>
+                            <input type="text" placeholder="U72200DL2000PTC106791" id="c-cin" />
+                        </div>
+                        <div class="form-group">
+                            <label>HR Contact Name *</label>
+                            <input type="text" placeholder="Ms. Priya Kapoor" id="c-hr" />
+                        </div>
+                        <div class="form-group">
+                            <label>HR Email *</label>
+                            <input type="email" placeholder="hr@company.com" id="c-email" />
+                        </div>
+                        <div class="form-group">
+                            <label>HR Phone *</label>
+                            <input type="tel" placeholder="9XXXXXXXXX" id="c-phone" />
+                        </div>
+                    </div>
+                    <div class="section-title">Account</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Password *</label>
+                            <input type="password" id="c-pass" />
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password *</label>
+                            <input type="password" id="c-pass2" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-outline" onclick="goHome()">Cancel</button>
+                        <button class="btn btn-gold" onclick="companyRegister()">Register Company →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     COLLEGE AUTH
+══════════════════════════════════════════════════ -->
+    <div id="page-college-auth" class="page">
+        <div class="auth-wrap">
+            <div class="auth-box">
+                <div class="auth-head">
+                    <div class="back" onclick="goHome()">← Back to Home</div>
+                    <h2>🏫 College Admin Portal</h2>
+                    <p>Placement Cell – NIET Greater Noida</p>
+                </div>
+                <div class="auth-body">
+                    <div class="form-grid full">
+                        <div class="form-group">
+                            <label>Admin Username</label>
+                            <input type="text" placeholder="admin" id="col-user" />
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter admin password" id="col-pass" />
+                        </div>
+                    </div>
+                    <p style="font-size:12px;color:var(--muted);margin:8px 0 20px;">Use: <strong>admin /
+                            admin123</strong> for demo</p>
+                    <div class="form-actions">
+                        <button class="btn btn-outline" onclick="goHome()">Cancel</button>
+                        <button class="btn btn-primary" style="background:var(--success);"
+                            onclick="collegeLogin()">Login as Admin →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     STUDENT DASHBOARD
+══════════════════════════════════════════════════ -->
+    <div id="page-student-dash" class="page">
+        <div class="dash">
+            <div class="sidebar" id="s-sidebar">
+                <div class="sidebar-logo">
+                    <h3>NIET Placement</h3>
+                    <p>Student Portal</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" onclick="showDashSection('s','overview',this)"><span
+                            class="icon">📊</span> Dashboard</div>
+                    <div class="nav-item" onclick="showDashSection('s','companies',this)"><span class="icon">🏢</span>
+                        Drive Notifications</div>
+                    <div class="nav-item" onclick="showDashSection('s','applications',this)"><span
+                            class="icon">📋</span> My Applications</div>
+                    <div class="nav-item" onclick="showDashSection('s','profile',this)"><span class="icon">👤</span> My
+                        Profile</div>
+                </nav>
+                <div class="sidebar-footer">
+                    <div class="sidebar-user">
+                        <div class="avatar" id="s-av">R</div>
+                        <div class="sidebar-user-info">
+                            <h4 id="s-dash-name">Rahul Sharma</h4>
+                            <p id="s-dash-erp">2021BTCS001</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" style="width:100%;margin-top:10px;"
+                        onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <div class="dash-main">
+                <div class="dash-topbar">
+                    <button class="hamburger" onclick="toggleSidebar('s-sidebar')">☰</button>
+                    <h2 id="s-page-title">Dashboard</h2>
+                    <span class="badge badge-blue" id="s-status-badge">Profile Complete</span>
+                </div>
+                <div class="dash-content">
+
+                    <!-- OVERVIEW -->
+                    <div id="s-overview" class="dash-section">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="val" id="s-stat-drives">5</div>
+                                <div class="lbl">Active Drives</div><span class="icon">🏢</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="s-stat-applied">2</div>
+                                <div class="lbl">Applied</div><span class="icon">📩</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="s-stat-shortlisted">1</div>
+                                <div class="lbl">Shortlisted</div><span class="icon">✅</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="s-stat-cgpa">—</div>
+                                <div class="lbl">Your CGPA</div><span class="icon">📈</span>
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <span>📢</span>
+                            <div><strong>New Drive Alert!</strong> HCL Technologies is visiting campus on 15 Jan 2025.
+                                Check eligibility and register before 10 Jan 2025.</div>
+                        </div>
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Upcoming Placement Drives</h3>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Role</th>
+                                            <th>Package</th>
+                                            <th>Drive Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="s-drives-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COMPANIES / NOTIFICATIONS -->
+                    <div id="s-companies" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Drive Notifications & Eligibility</h3>
+                            </div>
+                            <div id="s-notif-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- APPLICATIONS -->
+                    <div id="s-applications" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>My Applications</h3>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Role</th>
+                                            <th>Applied On</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="s-app-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROFILE -->
+                    <div id="s-profile" class="dash-section hidden">
+                        <div class="profile-section">
+                            <h4>👤 Personal Information</h4>
+                            <div class="profile-row" id="s-prof-personal"></div>
+                        </div>
+                        <div class="profile-section">
+                            <h4>🎓 Academic Details</h4>
+                            <div class="profile-row" id="s-prof-academic"></div>
+                        </div>
+                        <div class="profile-section">
+                            <h4>💼 Professional Details</h4>
+                            <div class="profile-row" id="s-prof-professional"></div>
+                        </div>
+                        <div class="profile-section">
+                            <h4>📄 Documents Uploaded</h4>
+                            <div class="profile-row" id="s-prof-docs"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     COMPANY DASHBOARD
+══════════════════════════════════════════════════ -->
+    <div id="page-company-dash" class="page">
+        <div class="dash">
+            <div class="sidebar" id="c-sidebar">
+                <div class="sidebar-logo">
+                    <h3 id="c-dash-name">Company</h3>
+                    <p>Placement Portal</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" onclick="showDashSection('c','overview',this)"><span
+                            class="icon">📊</span> Dashboard</div>
+                    <div class="nav-item" onclick="showDashSection('c','criteria',this)"><span class="icon">📋</span>
+                        Set Criteria</div>
+                    <div class="nav-item" onclick="showDashSection('c','candidates',this)"><span class="icon">👥</span>
+                        Candidates</div>
+                    <div class="nav-item" onclick="showDashSection('c','selected',this)"><span class="icon">🏆</span>
+                        Selected Students</div>
+                </nav>
+                <div class="sidebar-footer">
+                    <div class="sidebar-user">
+                        <div class="avatar" style="background:var(--gold);color:var(--navy);" id="c-av">H</div>
+                        <div class="sidebar-user-info">
+                            <h4 id="c-dash-hr">HR Manager</h4>
+                            <p id="c-dash-email">hr@company.com</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" style="width:100%;margin-top:10px;"
+                        onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <div class="dash-main">
+                <div class="dash-topbar">
+                    <button class="hamburger" onclick="toggleSidebar('c-sidebar')">☰</button>
+                    <h2 id="c-page-title">Dashboard</h2>
+                    <button class="btn btn-gold btn-sm"
+                        onclick="showDashSection('c','criteria',document.querySelector('#c-sidebar .nav-item:nth-child(2))'))">+
+                        Post Drive</button>
+                </div>
+                <div class="dash-content">
+
+                    <!-- OVERVIEW -->
+                    <div id="c-overview" class="dash-section">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="val" id="c-stat-apps">—</div>
+                                <div class="lbl">Total Applicants</div><span class="icon">👥</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="c-stat-short">—</div>
+                                <div class="lbl">Shortlisted</div><span class="icon">✅</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="c-stat-sel">—</div>
+                                <div class="lbl">Selected</div><span class="icon">🏆</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="c-stat-pkg">—</div>
+                                <div class="lbl">Avg Package (LPA)</div><span class="icon">💰</span>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Your Active Drive</h3>
+                            </div>
+                            <div id="c-drive-info"></div>
+                        </div>
+                    </div>
+
+                    <!-- SET CRITERIA -->
+                    <div id="c-criteria" class="dash-section hidden">
+                        <div class="card" style="padding:28px;max-width:700px;">
+                            <div class="section-head">
+                                <h3>Post / Update Placement Drive</h3>
+                            </div>
+                            <div class="section-title">Drive Details</div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Job Role / Profile *</label>
+                                    <input type="text" placeholder="Software Engineer" id="cr-role" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Job Type</label>
+                                    <select id="cr-jtype">
+                                        <option>Full Time</option>
+                                        <option>6-Month Internship + PPO</option>
+                                        <option>Internship</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>CTC / Package (LPA) *</label>
+                                    <input type="text" placeholder="e.g. 3.5 – 5.0" id="cr-ctc" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Job Location</label>
+                                    <input type="text" placeholder="Noida / Bengaluru / Pan India" id="cr-loc" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Drive Date *</label>
+                                    <input type="date" id="cr-date" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Registration Deadline *</label>
+                                    <input type="date" id="cr-deadline" />
+                                </div>
+                                <div class="form-group span2">
+                                    <label>Job Description</label>
+                                    <textarea placeholder="Roles and responsibilities, project details..."
+                                        id="cr-jd"></textarea>
+                                </div>
+                            </div>
+                            <div class="section-title">Eligibility Criteria</div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Minimum CGPA *</label>
+                                    <input type="number" step="0.1" min="5" max="10" placeholder="6.0" id="cr-cgpa" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Max Backlogs Allowed</label>
+                                    <input type="number" min="0" placeholder="0" id="cr-backlogs" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Min 10th %</label>
+                                    <input type="number" step="0.1" min="0" max="100" placeholder="60" id="cr-10th" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Min 12th %</label>
+                                    <input type="number" step="0.1" min="0" max="100" placeholder="60" id="cr-12th" />
+                                </div>
+                                <div class="form-group span2">
+                                    <label>Eligible Branches</label>
+                                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px;"
+                                        id="cr-branches">
+                                        <label
+                                            style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;"><input
+                                                type="checkbox" value="CSE" checked> CSE</label>
+                                        <label
+                                            style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;"><input
+                                                type="checkbox" value="IT"> IT</label>
+                                        <label
+                                            style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;"><input
+                                                type="checkbox" value="ECE"> ECE</label>
+                                        <label
+                                            style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;"><input
+                                                type="checkbox" value="ME"> Mechanical</label>
+                                        <label
+                                            style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;"><input
+                                                type="checkbox" value="CE"> Civil</label>
+                                        <label
+                                            style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;"><input
+                                                type="checkbox" value="EE"> Electrical</label>
+                                    </div>
+                                </div>
+                                <div class="form-group span2">
+                                    <label>Additional Requirements</label>
+                                    <textarea placeholder="Good communication skills, knowledge of DSA, etc."
+                                        id="cr-extra"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-gold" onclick="saveCriteria()">Save & Notify College →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CANDIDATES -->
+                    <div id="c-candidates" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Eligible Candidates</h3>
+                                <button class="btn btn-primary btn-sm" onclick="shortlistSelected()">Shortlist Selected
+                                    ✓</button>
+                            </div>
+                            <div id="c-cand-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- SELECTED STUDENTS -->
+                    <div id="c-selected" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Selected Students</h3>
+                                <button class="btn btn-primary btn-sm" onclick="openOfferModal()">+ Issue Offer
+                                    Letter</button>
+                            </div>
+                            <div id="c-sel-list"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     COLLEGE DASHBOARD
+══════════════════════════════════════════════════ -->
+    <div id="page-college-dash" class="page">
+        <div class="dash">
+            <div class="sidebar" id="col-sidebar">
+                <div class="sidebar-logo">
+                    <h3>NIET – Placement Cell</h3>
+                    <p>Admin Dashboard</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" onclick="showDashSection('col','overview',this)"><span
+                            class="icon">📊</span> Dashboard</div>
+                    <div class="nav-item" onclick="showDashSection('col','companies',this)"><span class="icon">🏢</span>
+                        Companies</div>
+                    <div class="nav-item" onclick="showDashSection('col','students',this)"><span class="icon">🎓</span>
+                        All Students</div>
+                    <div class="nav-item" onclick="showDashSection('col','placed',this)"><span class="icon">🏆</span>
+                        Placed Students</div>
+                    <div class="nav-item" onclick="showDashSection('col','emails',this)"><span class="icon">📧</span>
+                        Send Invites</div>
+                </nav>
+                <div class="sidebar-footer">
+                    <div class="sidebar-user">
+                        <div class="avatar" style="background:var(--success);">A</div>
+                        <div class="sidebar-user-info">
+                            <h4>Placement Cell</h4>
+                            <p>Admin</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" style="width:100%;margin-top:10px;"
+                        onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <div class="dash-main">
+                <div class="dash-topbar">
+                    <button class="hamburger" onclick="toggleSidebar('col-sidebar')">☰</button>
+                    <h2 id="col-page-title">Dashboard</h2>
+                    <span class="badge badge-green">NIET 2024–25</span>
+                </div>
+                <div class="dash-content">
+
+                    <!-- OVERVIEW -->
+                    <div id="col-overview" class="dash-section">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="val" id="col-total">0</div>
+                                <div class="lbl">Total Students</div><span class="icon">🎓</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="col-placed">0</div>
+                                <div class="lbl">Students Placed</div><span class="icon">✅</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="col-unplaced">0</div>
+                                <div class="lbl">Not Yet Placed</div><span class="icon">⏳</span>
+                            </div>
+                            <div class="stat-card">
+                                <div class="val" id="col-pct">0%</div>
+                                <div class="lbl">Placement %</div><span class="icon">📈</span>
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+                            <div class="card" style="padding:20px;">
+                                <div class="section-head">
+                                    <h3>Placement Progress</h3>
+                                </div>
+                                <div class="ring-wrap">
+                                    <svg width="100" height="100" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke="#dce3f0" stroke-width="12" />
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke="#10b981" stroke-width="12"
+                                            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round"
+                                            transform="rotate(-90 50 50)" id="ring-circle" />
+                                    </svg>
+                                    <div class="ring-info">
+                                        <div class="pct" id="ring-pct">0%</div>
+                                        <p id="ring-sub">of students placed</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="padding:20px;">
+                                <div class="section-head">
+                                    <h3>Top Recruiters</h3>
+                                </div>
+                                <div id="col-top-recruiters"></div>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Recent Company Drives</h3>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Role</th>
+                                            <th>Drive Date</th>
+                                            <th>Selected</th>
+                                            <th>Package</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="col-drives-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COMPANIES -->
+                    <div id="col-companies" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Registered Companies at NIET</h3>
+                                <span class="badge badge-blue" id="col-co-count">0 Companies</span>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Sector</th>
+                                            <th>HR Contact</th>
+                                            <th>Drive Date</th>
+                                            <th>Package</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="col-co-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STUDENTS -->
+                    <div id="col-students" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>All Registered Students</h3>
+                            </div>
+                            <div class="search-bar">
+                                <span class="s-icon">🔍</span>
+                                <input type="text" placeholder="Search by name, ERP, branch..." id="col-search"
+                                    oninput="filterStudents()" />
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>ERP ID</th>
+                                            <th>Branch</th>
+                                            <th>CGPA</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="col-stu-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PLACED -->
+                    <div id="col-placed" class="dash-section hidden">
+                        <div class="card" style="padding:20px;">
+                            <div class="section-head">
+                                <h3>Placed Students</h3>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>ERP</th>
+                                            <th>Branch</th>
+                                            <th>Company</th>
+                                            <th>Role</th>
+                                            <th>Package (LPA)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="col-placed-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEND EMAILS -->
+                    <div id="col-emails" class="dash-section hidden">
+                        <div class="card" style="padding:28px;max-width:700px;">
+                            <div class="section-head">
+                                <h3>Send Drive Invitation to Students</h3>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Select Company Drive</label>
+                                    <select id="em-company">
+                                        <option value="">Choose company...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Target Batch</label>
+                                    <select id="em-batch">
+                                        <option>2025</option>
+                                        <option>2026</option>
+                                        <option>2027</option>
+                                    </select>
+                                </div>
+                                <div class="form-group span2">
+                                    <label>Email Subject</label>
+                                    <input type="text" placeholder="Placement Drive Invitation – [Company Name]"
+                                        id="em-subject" />
+                                </div>
+                                <div class="form-group span2">
+                                    <label>Message Body</label>
+                                    <textarea rows="6" id="em-body"
+                                        placeholder="Dear students,&#10;&#10;We are pleased to inform you that [Company] is visiting campus for placement on [Date]..."></textarea>
+                                </div>
+                            </div>
+                            <div class="alert alert-info" style="margin-top:16px;">
+                                <span>ℹ️</span>
+                                <div>In production, this sends real emails via SMTP/SendGrid. Here it simulates the
+                                    action and marks students as notified.</div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" onclick="sendEmails()">📧 Send Invitations</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     OFFER MODAL
+══════════════════════════════════════════════════ -->
+    <div id="offer-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-head">
+                <h3>Issue Offer / Select Student</h3>
+                <button class="modal-close" onclick="closeModal('offer-modal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Student ERP ID</label>
+                        <input type="text" placeholder="2021BTCS001" id="off-erp" />
+                    </div>
+                    <div class="form-group">
+                        <label>Package Offered (LPA)</label>
+                        <input type="number" step="0.1" placeholder="4.5" id="off-pkg" />
+                    </div>
+                    <div class="form-group">
+                        <label>Joining Date</label>
+                        <input type="date" id="off-join" />
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <input type="text" placeholder="Software Engineer" id="off-role" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-outline" onclick="closeModal('offer-modal')">Cancel</button>
+                    <button class="btn btn-gold" onclick="issueOffer()">Issue Offer ✓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+    <script>
+        /* ─── SEED DATA ─── */
+        /* Companies that have come to NIET Greater Noida based on public records */
+        const COMPANIES = [
+            { id: 1, name: 'TCS', sector: 'IT / Software', type: 'Indian MNC', hr: 'Priya Mehta', email: 'campus@tcs.com', phone: '9811001001', web: 'tcs.com', role: 'Assistant System Engineer', ctc: '3.36 – 4.5', location: 'Pan India', date: '2024-12-10', deadline: '2024-12-05', cgpa: 6.0, backlogs: 0, tenth: 60, twelfth: 60, branches: ['CSE', 'IT', 'ECE'], jd: 'Work on enterprise software projects. Training provided.', drives: 42, selected: 38, status: 'Completed', color: '#1e56a0' },
+            { id: 2, name: 'Infosys', sector: 'IT / Software', type: 'Indian MNC', hr: 'Rohit Kapoor', email: 'campus@infosys.com', phone: '9811001002', web: 'infosys.com', role: 'Systems Engineer', ctc: '3.6 – 5.0', location: 'Bengaluru / Pune / Noida', date: '2025-01-05', deadline: '2024-12-28', cgpa: 6.5, backlogs: 0, tenth: 60, twelfth: 60, branches: ['CSE', 'IT', 'ECE', 'ME'], jd: 'Part of InfyTQ track. Role includes technology consulting.', drives: 35, selected: 29, status: 'Completed', color: '#663399' },
+            { id: 3, name: 'Wipro', sector: 'IT / Software', type: 'Indian MNC', hr: 'Sneha Joshi', email: 'campus@wipro.com', phone: '9811001003', web: 'wipro.com', role: 'Project Engineer', ctc: '3.5', location: 'Multiple Locations', date: '2025-01-20', deadline: '2025-01-14', cgpa: 6.0, backlogs: 0, tenth: 55, twelfth: 55, branches: ['CSE', 'IT', 'ECE', 'EE'], jd: 'WILP / Elite / Elite-Gold tracks available.', drives: 30, selected: 25, status: 'Upcoming', color: '#9c27b0' },
+            { id: 4, name: 'HCL Technologies', sector: 'IT / Software', type: 'Indian MNC', hr: 'Amit Singh', email: 'campus@hcl.com', phone: '9811001004', web: 'hcltech.com', role: 'Graduate Engineer Trainee', ctc: '3.5 – 4.8', location: 'Noida / Chennai', date: '2025-01-15', deadline: '2025-01-10', cgpa: 6.0, backlogs: 0, tenth: 60, twelfth: 60, branches: ['CSE', 'IT', 'ECE', 'ME', 'EE'], jd: 'Fresh graduates join as GETs. Training at HCL campus.', drives: 28, selected: 22, status: 'Open', color: '#00a1e9' },
+            { id: 5, name: 'Cognizant', sector: 'IT / Software', type: 'MNC', hr: 'Divya Sharma', email: 'campus@cognizant.com', phone: '9811001005', web: 'cognizant.com', role: 'Programmer Analyst', ctc: '4.0', location: 'Chennai / Pune / Noida', date: '2025-02-10', deadline: '2025-02-01', cgpa: 7.0, backlogs: 0, tenth: 60, twelfth: 60, branches: ['CSE', 'IT', 'ECE'], jd: 'GenC program. Coding test + interview.', drives: 20, selected: 18, status: 'Upcoming', color: '#1252a3' },
+            { id: 6, name: 'Tech Mahindra', sector: 'IT / Software', type: 'Indian MNC', hr: 'Kunal Verma', email: 'campus@techmahindra.com', phone: '9811001006', web: 'techmahindra.com', role: 'Software Associate', ctc: '3.25', location: 'Noida / Hyderabad', date: '2025-02-20', deadline: '2025-02-12', cgpa: 6.0, backlogs: 0, tenth: 55, twelfth: 55, branches: ['CSE', 'IT', 'ECE', 'ME'], jd: 'Associate Engineer track. 6-month training.', drives: 18, selected: 15, status: 'Upcoming', color: '#e31837' },
+            { id: 7, name: 'Capgemini', sector: 'IT / Software', type: 'MNC', hr: 'Nisha Gupta', email: 'campus@capgemini.com', phone: '9811001007', web: 'capgemini.com', role: 'Analyst', ctc: '4.0', location: 'Mumbai / Pune / Bengaluru', date: '2025-02-28', deadline: '2025-02-18', cgpa: 6.0, backlogs: 0, tenth: 60, twelfth: 60, branches: ['CSE', 'IT', 'ECE'], jd: 'Supernova + Exceller programs. AMCAT based hiring.', drives: 15, selected: 12, status: 'Upcoming', color: '#0070ad' },
+            { id: 8, name: 'Accenture', sector: 'Consulting', type: 'MNC', hr: 'Pooja Yadav', email: 'campus@accenture.com', phone: '9811001008', web: 'accenture.com', role: 'ASE – Associate Software Engineer', ctc: '4.5', location: 'Pan India', date: '2025-03-05', deadline: '2025-02-25', cgpa: 6.0, backlogs: 0, tenth: 60, twelfth: 60, branches: ['CSE', 'IT', 'ECE', 'ME'], jd: 'Cloud and digital technology track.', drives: 12, selected: 10, status: 'Upcoming', color: '#a100ff' },
+        ];
+
+        const STUDENTS_DB = [
+            { erp: '2021BTCS001', name: 'Rahul Sharma', branch: 'Computer Science & Engineering', batch: '2025', cgpa: 7.85, backlogs: 0, tenth: 88, twelfth: 80, phone: '9811112222', email: 'rahul@niet.co.in', skills: 'Python, Java, SQL', placed: false, company: '', pkg: '' },
+            { erp: '2021BTCS002', name: 'Priya Singh', branch: 'Computer Science & Engineering', batch: '2025', cgpa: 8.20, backlogs: 0, tenth: 91, twelfth: 85, phone: '9811113333', email: 'priya@niet.co.in', skills: 'React, Node.js, MongoDB', placed: true, company: 'TCS', pkg: '3.6' },
+            { erp: '2021BTIT003', name: 'Ankit Gupta', branch: 'Information Technology', batch: '2025', cgpa: 7.10, backlogs: 0, tenth: 76, twelfth: 72, phone: '9811114444', email: 'ankit@niet.co.in', skills: 'Java, Spring Boot', placed: true, company: 'Infosys', pkg: '3.6' },
+            { erp: '2021BTEC004', name: 'Sneha Patel', branch: 'Electronics & Communication', batch: '2025', cgpa: 6.90, backlogs: 0, tenth: 70, twelfth: 68, phone: '9811115555', email: 'sneha@niet.co.in', skills: 'Embedded C, VLSI', placed: false, company: '', pkg: '' },
+            { erp: '2021BTCS005', name: 'Vikram Yadav', branch: 'Computer Science & Engineering', batch: '2025', cgpa: 6.40, backlogs: 1, tenth: 65, twelfth: 62, phone: '9811116666', email: 'vikram@niet.co.in', skills: 'C++, DSA', placed: false, company: '', pkg: '' },
+            { erp: '2021BTME006', name: 'Pooja Mishra', branch: 'Mechanical Engineering', batch: '2025', cgpa: 7.50, backlogs: 0, tenth: 80, twelfth: 75, phone: '9811117777', email: 'pooja@niet.co.in', skills: 'AutoCAD, SolidWorks', placed: true, company: 'HCL Technologies', pkg: '3.5' },
+            { erp: '2021BTCS007', name: 'Rohan Kumar', branch: 'Computer Science & Engineering', batch: '2025', cgpa: 8.90, backlogs: 0, tenth: 94, twelfth: 92, phone: '9811118888', email: 'rohan@niet.co.in', skills: 'ML, Python, TensorFlow', placed: true, company: 'Accenture', pkg: '4.5' },
+            { erp: '2021BTIT008', name: 'Kavya Verma', branch: 'Information Technology', batch: '2025', cgpa: 7.60, backlogs: 0, tenth: 82, twelfth: 79, phone: '9811119999', email: 'kavya@niet.co.in', skills: 'Angular, TypeScript', placed: true, company: 'Wipro', pkg: '3.5' },
+        ];
+
+        /* ─── STATE ─── */
+        let currentUser = null;
+        let currentPortal = null;
+
+        /* ─── NAV ─── */
+        function showPage(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0, 0); }
+        function goHome() { showPage('landing'); currentUser = null; currentPortal = null; }
+        function logout() { goHome(); }
+
+        function showAuth(portal) {
+            if (portal === 'student') showPage('page-student-auth');
+            else if (portal === 'company') showPage('page-company-auth');
+            else showPage('page-college-auth');
+        }
+
+        function switchTab(portal, tab, el) {
+            const prefix = portal === ('student') ? 'student' : portal;
+            document.querySelectorAll(`#page-${portal}-auth .auth-tab`).forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.querySelectorAll(`#page-${portal}-auth .auth-body`).forEach(b => b.classList.add('hidden'));
+            document.getElementById(`${prefix}-${tab}`).classList.remove('hidden');
+        }
+
+        function switchTabDirect(portal, tab) {
+            const tabs = document.querySelectorAll(`#page-${portal}-auth .auth-tab`);
+            const bodies = document.querySelectorAll(`#page-${portal}-auth .auth-body`);
+            bodies.forEach(b => b.classList.add('hidden'));
+            const prefix = portal;
+            document.getElementById(`${prefix}-${tab}`).classList.remove('hidden');
+            const idx = tab === 'login' || tab === 'register' ? (tab === 'login' ? 0 : 1) : (tab === 'signup' ? 1 : 0);
+            tabs.forEach((t, i) => { t.classList.toggle('active', i === idx); });
+        }
+
+        /* ─── STUDENT ─── */
+        function studentLogin() {
+            const erp = document.getElementById('s-login-erp').value.trim();
+            const pass = document.getElementById('s-login-pass').value;
+            const existing = STUDENTS_DB.find(s => s.erp === erp);
+            if (!erp || !pass) { alert('Please fill all fields.'); return; }
+            currentUser = existing || { erp, name: 'Student', branch: 'CSE', cgpa: '—', placed: false, skills: '', backlogs: 0, tenth: 0, twelfth: 0 };
+            currentPortal = 'student';
+            loadStudentDash();
+            showPage('page-student-dash');
+        }
+
+        function studentSignup() {
+            const fname = document.getElementById('s-fname').value.trim();
+            const lname = document.getElementById('s-lname').value.trim();
+            const erp = document.getElementById('s-erp').value.trim();
+            const cgpa = parseFloat(document.getElementById('s-cgpa').value) || 0;
+            if (!fname || !erp) { alert('Please fill required fields (Name, ERP ID).'); return; }
+            currentUser = { erp, name: `${fname} ${lname}`, branch: document.getElementById('s-branch').value || 'CSE', cgpa, placed: false, skills: document.getElementById('s-skills').value, backlogs: parseInt(document.getElementById('s-backlogs').value) || 0, tenth: parseFloat(document.getElementById('s-10th').value) || 0, twelfth: parseFloat(document.getElementById('s-12th').value) || 0 };
+            STUDENTS_DB.push(currentUser);
+            currentPortal = 'student';
+            loadStudentDash();
+            showPage('page-student-dash');
+        }
+
+        function loadStudentDash() {
+            const u = currentUser;
+            document.getElementById('s-dash-name').textContent = u.name;
+            document.getElementById('s-dash-erp').textContent = u.erp;
+            document.getElementById('s-av').textContent = (u.name || 'S')[0].toUpperCase();
+            document.getElementById('s-stat-cgpa').textContent = u.cgpa || '—';
+            document.getElementById('s-stat-drives').textContent = COMPANIES.length;
+            // eligible drives
+            const elig = COMPANIES.filter(c => u.cgpa >= c.cgpa && u.backlogs <= c.backlogs);
+            document.getElementById('s-stat-applied').textContent = elig.filter(c => c.status === 'Completed').length;
+            document.getElementById('s-stat-shortlisted').textContent = Math.floor(elig.length / 3);
+
+            // drives table
+            const tb = document.getElementById('s-drives-table');
+            tb.innerHTML = COMPANIES.slice(0, 6).map(c => {
+                const eligible = u.cgpa >= c.cgpa && u.backlogs <= c.backlogs;
+                return `<tr>
+      <td><div class="company-logo-cell"><div class="company-dot" style="background:${c.color}">${c.name[0]}</div>${c.name}</div></td>
+      <td>${c.role}</td><td>${c.ctc} LPA</td><td>${c.date}</td>
+      <td>${eligible ? '<span class="badge badge-green">Eligible</span>' : '<span class="badge badge-red">Not Eligible</span>'}</td>
+      <td>${eligible && c.status !== 'Completed' ? `<button class="btn btn-primary btn-sm" onclick="alert('Application submitted for ${c.name}!')">Apply</button>` : '<span style="color:var(--muted);font-size:13px;">' + (c.status === 'Completed' ? 'Closed' : '—') + '</span>'}</td>
+    </tr>`;
+            }).join('');
+
+            // notifications
+            const nl = document.getElementById('s-notif-list');
+            nl.innerHTML = COMPANIES.map(c => {
+                const eligible = u.cgpa >= c.cgpa && u.backlogs <= c.backlogs;
+                return `<div style="border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:16px;">
+      <div class="company-dot" style="background:${c.color};width:40px;height:40px;font-size:16px;">${c.name[0]}</div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <strong style="font-size:15px;">${c.name}</strong>
+          <span class="badge badge-blue">${c.sector}</span>
+          ${eligible ? '<span class="badge badge-green">You are eligible</span>' : '<span class="badge badge-red">Not eligible (CGPA/backlogs)</span>'}
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin:4px 0;">Role: ${c.role} &nbsp;|&nbsp; Package: ${c.ctc} LPA &nbsp;|&nbsp; Drive: ${c.date}</p>
+        <p style="font-size:13px;color:var(--muted);">Min CGPA: ${c.cgpa} &nbsp;|&nbsp; Backlogs: ${c.backlogs === 0 ? 'None allowed' : c.backlogs} &nbsp;|&nbsp; Branches: ${c.branches.join(', ')}</p>
+      </div>
+      ${eligible && c.status !== 'Completed' ? `<button class="btn btn-primary btn-sm" onclick="alert('Registered for ${c.name} drive!')">Register</button>` : ''}
+    </div>`;
+            }).join('');
+
+            // applications
+            const at = document.getElementById('s-app-table');
+            const apps = COMPANIES.filter(c => u.cgpa >= c.cgpa && u.backlogs <= c.backlogs).slice(0, 3);
+            at.innerHTML = apps.map((c, i) => `<tr><td><div class="company-logo-cell"><div class="company-dot" style="background:${c.color}">${c.name[0]}</div>${c.name}</div></td><td>${c.role}</td><td>${c.date}</td><td>${i === 0 ? '<span class="badge badge-green">Shortlisted</span>' : i === 1 ? '<span class="badge badge-blue">Under Review</span>' : '<span class="badge badge-gold">Applied</span>'}</td></tr>`).join('');
+
+            // profile
+            document.getElementById('s-prof-personal').innerHTML = `
+    <div class="profile-item"><div class="key">Full Name</div><div class="val">${u.name}</div></div>
+    <div class="profile-item"><div class="key">ERP ID</div><div class="val">${u.erp}</div></div>
+    <div class="profile-item"><div class="key">Email</div><div class="val">${u.email || u.erp + '@niet.co.in'}</div></div>
+    <div class="profile-item"><div class="key">Phone</div><div class="val">${u.phone || '—'}</div></div>`;
+            document.getElementById('s-prof-academic').innerHTML = `
+    <div class="profile-item"><div class="key">Branch</div><div class="val">${u.branch}</div></div>
+    <div class="profile-item"><div class="key">CGPA</div><div class="val">${u.cgpa}</div></div>
+    <div class="profile-item"><div class="key">10th %</div><div class="val">${u.tenth || '—'}</div></div>
+    <div class="profile-item"><div class="key">12th %</div><div class="val">${u.twelfth || '—'}</div></div>`;
+            document.getElementById('s-prof-professional').innerHTML = `
+    <div class="profile-item"><div class="key">Skills</div><div class="val">${u.skills || 'Not added'}</div></div>
+    <div class="profile-item"><div class="key">Placement Status</div><div class="val">${u.placed ? '<span class="badge badge-green">Placed at ' + u.company + '</span>' : '<span class="badge badge-gold">Seeking Placement</span>'}</div></div>`;
+            document.getElementById('s-prof-docs').innerHTML = `
+    <div class="profile-item"><div class="key">Resume</div><div class="val">resume.pdf ✓</div></div>
+    <div class="profile-item"><div class="key">Gov ID</div><div class="val">Aadhaar uploaded ✓</div></div>
+    <div class="profile-item"><div class="key">Photo</div><div class="val">passport_photo.jpg ✓</div></div>`;
+        }
+
+        /* ─── COMPANY ─── */
+        function companyLogin() {
+            const email = document.getElementById('c-login-email').value.trim();
+            const pass = document.getElementById('c-login-pass').value;
+            if (!email || !pass) { alert('Please fill all fields.'); return; }
+            const co = COMPANIES.find(c => c.email === email);
+            if (co) { currentUser = co; } else { currentUser = { name: 'Your Company', email, hr: 'HR Manager', sector: 'IT', ctc: '4.0', role: 'Software Engineer', drives: 0, selected: 0, status: 'Setup Required' }; }
+            currentPortal = 'company';
+            loadCompanyDash();
+            showPage('page-company-dash');
+        }
+
+        function companyRegister() {
+            const name = document.getElementById('c-name').value.trim();
+            const email = document.getElementById('c-email').value.trim();
+            const hr = document.getElementById('c-hr').value.trim();
+            if (!name || !email) { alert('Please fill required fields.'); return; }
+            currentUser = { name, email, hr, sector: document.getElementById('c-sector').value, phone: document.getElementById('c-phone').value, web: document.getElementById('c-web').value, drives: 0, selected: 0, status: 'Pending', role: 'TBD', ctc: '—', color: '#1e56a0' };
+            currentPortal = 'company';
+            COMPANIES.push({ ...currentUser, id: COMPANIES.length + 1 });
+            loadCompanyDash();
+            showPage('page-company-dash');
+        }
+
+        function loadCompanyDash() {
+            const co = currentUser;
+            document.getElementById('c-dash-name').textContent = co.name;
+            document.getElementById('c-dash-hr').textContent = co.hr || 'HR';
+            document.getElementById('c-dash-email').textContent = co.email || '';
+            document.getElementById('c-av').textContent = (co.name || 'C')[0];
+            document.getElementById('c-stat-apps').textContent = co.drives || 0;
+            document.getElementById('c-stat-short').textContent = Math.floor((co.drives || 0) * 0.6);
+            document.getElementById('c-stat-sel').textContent = co.selected || 0;
+            document.getElementById('c-stat-pkg').textContent = co.ctc || '—';
+            const di = document.getElementById('c-drive-info');
+            di.innerHTML = co.role && co.role !== 'TBD' ? `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+      <div><div style="font-size:12px;color:var(--muted)">Role</div><div style="font-weight:600">${co.role}</div></div>
+      <div><div style="font-size:12px;color:var(--muted)">Package</div><div style="font-weight:600">${co.ctc} LPA</div></div>
+      <div><div style="font-size:12px;color:var(--muted)">Drive Date</div><div style="font-weight:600">${co.date || 'TBD'}</div></div>
+      <div><div style="font-size:12px;color:var(--muted)">Status</div><div>${co.status === 'Completed' ? '<span class="badge badge-green">Completed</span>' : co.status === 'Open' ? '<span class="badge badge-blue">Open</span>' : '<span class="badge badge-gold">Upcoming</span>'}</div></div>
+    </div>` : '<div class="empty-state"><div class="emoji">📋</div><p>No active drive. Go to "Set Criteria" to post a placement drive.</p></div>';
+
+            // candidates
+            const cands = STUDENTS_DB.filter(s => co.cgpa ? s.cgpa >= co.cgpa : true);
+            const cl = document.getElementById('c-cand-list');
+            cl.innerHTML = `<div class="table-wrap"><table><thead><tr><th><input type="checkbox" onclick="toggleAll(this)"></th><th>Name</th><th>ERP</th><th>Branch</th><th>CGPA</th><th>Skills</th><th>Status</th></tr></thead><tbody>` +
+                cands.map(s => `<tr><td><input type="checkbox" class="cand-cb" data-erp="${s.erp}"></td><td>${s.name}</td><td>${s.erp}</td><td>${s.branch}</td><td>${s.cgpa}</td><td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${s.skills || '—'}</td><td>${s.placed ? '<span class="badge badge-green">Placed</span>' : '<span class="badge badge-gold">Available</span>'}</td></tr>`).join('') +
+                `</tbody></table></div>`;
+
+            // selected
+            const sel = STUDENTS_DB.filter(s => s.placed && s.company === co.name);
+            const sl = document.getElementById('c-sel-list');
+            sl.innerHTML = sel.length ? `<div class="table-wrap"><table><thead><tr><th>Name</th><th>ERP</th><th>Branch</th><th>Package (LPA)</th><th>Role</th></tr></thead><tbody>` +
+                sel.map(s => `<tr><td>${s.name}</td><td>${s.erp}</td><td>${s.branch}</td><td>${s.pkg} LPA</td><td>${co.role || 'Engineer'}</td></tr>`).join('') +
+                `</tbody></table></div>` : '<div class="empty-state"><div class="emoji">🏆</div><p>No students selected yet. Use "Issue Offer Letter" to add selections.</p></div>';
+        }
+
+        function toggleAll(cb) { document.querySelectorAll('.cand-cb').forEach(c => c.checked = cb.checked); }
+        function shortlistSelected() {
+            const checked = [...document.querySelectorAll('.cand-cb:checked')].length;
+            if (!checked) { alert('Select at least one candidate.'); return; }
+            alert(`${checked} candidate(s) shortlisted! College has been notified.`);
+        }
+
+        function saveCriteria() {
+            const role = document.getElementById('cr-role').value.trim();
+            const ctc = document.getElementById('cr-ctc').value.trim();
+            const cgpa = document.getElementById('cr-cgpa').value;
+            if (!role || !ctc || !cgpa) { alert('Please fill Role, Package, and Min CGPA.'); return; }
+            if (currentUser) { currentUser.role = role; currentUser.ctc = ctc; currentUser.cgpa = parseFloat(cgpa); currentUser.date = document.getElementById('cr-date').value; currentUser.status = 'Open'; }
+            alert(`Drive posted successfully!\n\nRole: ${role}\nPackage: ${ctc} LPA\nMin CGPA: ${cgpa}\n\nCollege placement cell has been notified.`);
+            showDashSection('c', 'overview', document.querySelector('#c-sidebar .nav-item'));
+            loadCompanyDash();
+        }
+
+        function openOfferModal() { document.getElementById('offer-modal').classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+        function issueOffer() {
+            const erp = document.getElementById('off-erp').value.trim();
+            const pkg = document.getElementById('off-pkg').value.trim();
+            const role = document.getElementById('off-role').value.trim();
+            if (!erp || !pkg) { alert('Please fill ERP ID and Package.'); return; }
+            const stu = STUDENTS_DB.find(s => s.erp === erp);
+            if (stu) { stu.placed = true; stu.company = currentUser.name || 'Company'; stu.pkg = pkg; }
+            else { STUDENTS_DB.push({ erp, name: 'Student ' + erp, branch: 'CSE', cgpa: 7.0, backlogs: 0, placed: true, company: currentUser?.name || 'Company', pkg, skills: '' }); }
+            closeModal('offer-modal');
+            alert(`Offer issued to ${erp} for ${role} at ${pkg} LPA!`);
+            loadCompanyDash();
+        }
+
+        /* ─── COLLEGE ─── */
+        function collegeLogin() {
+            const u = document.getElementById('col-user').value.trim();
+            const p = document.getElementById('col-pass').value;
+            if (u !== 'admin' || p !== 'admin123') { alert('Invalid credentials. Use admin / admin123 for demo.'); return; }
+            currentUser = { name: 'Admin', role: 'college' };
+            currentPortal = 'college';
+            loadCollegeDash();
+            showPage('page-college-dash');
+        }
+
+        function loadCollegeDash() {
+            const total = STUDENTS_DB.length;
+            const placed = STUDENTS_DB.filter(s => s.placed).length;
+            const unplaced = total - placed;
+            const pct = total ? Math.round(placed / total * 100) : 0;
+            document.getElementById('col-total').textContent = total;
+            document.getElementById('col-placed').textContent = placed;
+            document.getElementById('col-unplaced').textContent = unplaced;
+            document.getElementById('col-pct').textContent = pct + '%';
+            document.getElementById('ring-pct').textContent = pct + '%';
+            document.getElementById('ring-sub').textContent = `${placed} of ${total} students`;
+            const offset = 251.2 - (251.2 * pct / 100);
+            document.getElementById('ring-circle').style.strokeDashoffset = offset;
+
+            // top recruiters
+            const grouped = {};
+            STUDENTS_DB.filter(s => s.placed).forEach(s => { grouped[s.company] = (grouped[s.company] || 0) + 1; });
+            const sorted = Object.entries(grouped).sort((a, b) => b[1] - a[1]).slice(0, 4);
+            document.getElementById('col-top-recruiters').innerHTML = sorted.map(([co, cnt]) => {
+                const c = COMPANIES.find(x => x.name === co) || { color: '#888' };
+                const pct = Math.round(cnt / placed * 100);
+                return `<div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>${co}</span><span style="font-weight:600">${cnt} students</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:${pct}%;background:${c.color}"></div></div></div>`;
+            }).join('');
+
+            // drives table
+            document.getElementById('col-drives-table').innerHTML = COMPANIES.map(c => `<tr>
+    <td><div class="company-logo-cell"><div class="company-dot" style="background:${c.color}">${c.name[0]}</div>${c.name}</div></td>
+    <td>${c.role}</td><td>${c.date}</td><td>${c.selected}</td><td>${c.ctc} LPA</td>
+    <td>${c.status === 'Completed' ? '<span class="badge badge-green">Done</span>' : c.status === 'Open' ? '<span class="badge badge-blue">Open</span>' : '<span class="badge badge-gold">Upcoming</span>'}</td>
+  </tr>`).join('');
+
+            // companies table
+            document.getElementById('col-co-count').textContent = COMPANIES.length + ' Companies';
+            document.getElementById('col-co-table').innerHTML = COMPANIES.map(c => `<tr>
+    <td><div class="company-logo-cell"><div class="company-dot" style="background:${c.color}">${c.name[0]}</div>${c.name}</div></td>
+    <td>${c.sector}</td><td>${c.hr} · ${c.phone}</td><td>${c.date}</td><td>${c.ctc} LPA</td>
+    <td>${c.status === 'Completed' ? '<span class="badge badge-green">Completed</span>' : c.status === 'Open' ? '<span class="badge badge-blue">Open</span>' : '<span class="badge badge-gold">Upcoming</span>'}</td>
+  </tr>`).join('');
+
+            // students table
+            renderStudentTable(STUDENTS_DB);
+
+            // placed table
+            const placedS = STUDENTS_DB.filter(s => s.placed);
+            document.getElementById('col-placed-table').innerHTML = placedS.map(s => `<tr>
+    <td>${s.name}</td><td>${s.erp}</td><td>${s.branch}</td><td>${s.company}</td><td>${COMPANIES.find(c => c.name === s.company)?.role || 'Engineer'}</td><td><strong>${s.pkg} LPA</strong></td>
+  </tr>`).join('');
+
+            // email dropdown
+            const sel = document.getElementById('em-company');
+            sel.innerHTML = '<option value="">Choose company...</option>' + COMPANIES.map(c => `<option value="${c.id}">${c.name} – ${c.role} (${c.date})</option>`).join('');
+        }
+
+        function renderStudentTable(list) {
+            document.getElementById('col-stu-table').innerHTML = list.map(s => `<tr>
+    <td>${s.name}</td><td>${s.erp}</td><td>${s.branch}</td><td>${s.cgpa}</td>
+    <td>${s.placed ? `<span class="badge badge-green">Placed @ ${s.company}</span>` : '<span class="badge badge-gold">Seeking</span>'}</td>
+  </tr>`).join('');
+        }
+
+        function filterStudents() {
+            const q = document.getElementById('col-search').value.toLowerCase();
+            renderStudentTable(STUDENTS_DB.filter(s => s.name.toLowerCase().includes(q) || s.erp.toLowerCase().includes(q) || s.branch.toLowerCase().includes(q)));
+        }
+
+        function sendEmails() {
+            const cid = document.getElementById('em-company').value;
+            const subject = document.getElementById('em-subject').value.trim();
+            const body = document.getElementById('em-body').value.trim();
+            if (!cid) { alert('Please select a company.'); return; }
+            const co = COMPANIES.find(c => c.id == cid);
+            const count = STUDENTS_DB.filter(s => s.cgpa >= (co?.cgpa || 6) && !s.placed).length;
+            alert(`✅ Invitation emails sent!\n\nCompany: ${co?.name}\nEligible students notified: ${count}\nSubject: ${subject || 'Placement Drive Invitation'}\n\n(In production, real emails would be dispatched via SMTP/SendGrid)`);
+        }
+
+        /* ─── DASH SECTION SWITCHER ─── */
+        function showDashSection(portal, section, el) {
+            const prefix = portal;
+            document.querySelectorAll(`#page-${portal}-dash .dash-section`).forEach(s => s.classList.add('hidden'));
+            const target = document.getElementById(`${prefix}-${section}`);
+            if (target) target.classList.remove('hidden');
+            if (el) { document.querySelectorAll(`#${portal}-sidebar .nav-item`).forEach(n => n.classList.remove('active')); el.classList.add('active'); }
+            const titles = { overview: 'Dashboard', companies: portal === 'col' ? 'Companies' : 'Drive Notifications', criteria: 'Set Criteria', candidates: 'Candidates', selected: 'Selected Students', students: 'All Students', placed: 'Placed Students', emails: 'Send Invites', applications: 'My Applications', profile: 'My Profile' };
+            const titleEl = document.getElementById(`${prefix}-page-title`);
+            if (titleEl) titleEl.textContent = titles[section] || section;
+        }
+
+        function toggleSidebar(id) { document.getElementById(id).classList.toggle('open'); }
+        document.addEventListener('click', function (e) {
+            ['s-sidebar', 'c-sidebar', 'col-sidebar'].forEach(id => {
+                const sb = document.getElementById(id);
+                if (sb && sb.classList.contains('open') && !sb.contains(e.target)) { sb.classList.remove('open'); }
+            });
+        });
+    </script>
+</body>
+
+</html>
